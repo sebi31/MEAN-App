@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 
 //Find user by username
-router.get('/:username', (req, res, next) =>{
+router.get('/byusername/:username', (req, res, next) =>{
     User.getUserByUsername(req.params.username, (err, user) =>{
         if(err){
             res.send(err);
@@ -59,7 +59,8 @@ router.post('/authenticate', (req, res, next) =>{
 
                 res.json({
                     success: true,
-                    token: 'JWT' + token,
+                    //Passport requires the token to start with JWT
+                    token: 'JWT ' + token,
                     //User response
                     user: {
                         id: user._id,
@@ -78,10 +79,12 @@ router.post('/authenticate', (req, res, next) =>{
 });
 
 //Profile
-router.get('/profile', (req, res, next) =>{
+router.get('/profile', passport.authenticate('jwt', { session: false }), (req, res, next) =>{
     res.json({
+        success: true,
         user: req.user
     });
+
 });
 
 module.exports = router;

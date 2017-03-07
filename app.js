@@ -29,6 +29,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Body parser MW
+//app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 //Passport MW
