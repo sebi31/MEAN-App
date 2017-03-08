@@ -29,6 +29,8 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Body parser MW
+//TO DO: adjust the bodyParser urlencoded parameter for GET and POST requests
+
 app.use(bodyParser.json());
 
 //Passport MW
