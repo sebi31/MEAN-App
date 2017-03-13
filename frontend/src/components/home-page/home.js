@@ -1,5 +1,5 @@
 import ko from 'knockout';
-import homeTemplate from 'text!./home.html';
+import template from 'text!./home.html';
 import api from 'api-base';
 
 class UserViewModel {
@@ -31,4 +31,4 @@ class HomeViewModel {
     }
 }
 
-export default { viewModel: HomeViewModel, template: homeTemplate };
+export default { viewModel: HomeViewModel, template: template };

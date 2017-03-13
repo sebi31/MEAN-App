@@ -5,9 +5,6 @@ const baseUrl = 'http://localhost:3000';
 
 class ApiBase{
     constructor(){
-        /*this.Get = function(urlPart, data, callback){
-            $.getJSON(baseUrl + urlPart, data, callback)
-        }*/
 
     }
 
