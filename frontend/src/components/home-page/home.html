@@ -1,9 +1,5 @@
-<h2>Home</h2>
+<h2>Users</h2>
 
-<p data-bind='text: message'></p>
-
-<button data-bind='click: doSomething'>Click to get John Cena</button>
-<!-- ko with: User -->
-<h1 data-bind="text: Name"></h1>
-<h1 data-bind="text: Username"></h1>
-<!-- /ko -->
+<ul class="list-group" data-bind="foreach: Users">
+    <li class="list-group-item" data-bind="text: Username"></li>
+</ul>

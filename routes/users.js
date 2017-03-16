@@ -5,6 +5,18 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 
+//Get users
+router.get('', (req, res, next) =>{
+    User.get((err, users) =>{
+        if(err){
+            res.send(err);
+        }
+        else {
+            res.json(users);
+        }
+    });
+});
+
 //Find user by username
 router.get('/byusername/:username', (req, res, next) =>{
     User.getUserByUsername(req.params.username, (err, user) =>{

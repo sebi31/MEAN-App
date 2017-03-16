@@ -1,6 +1,6 @@
 import ko from 'knockout';
 import template from 'text!./home.html';
-import api from 'api-base';
+import httpService from 'http-service';
 
 class UserViewModel {
     constructor(user){
@@ -10,25 +10,21 @@ class UserViewModel {
     }
 }
 
-class HomeViewModel {
+class ViewModel {
     constructor(route) {
-        var self = this;
+        this.Users = ko.observableArray();
 
-        this.message = ko.observable('Welcome to koauthapp-web!');
-        this.Username = ko.observable('johncena');
-        this.User = ko.observable();
-        this.GetUser = function(){
-            api.Get('/users/byusername/' + self.Username(), function(response){
-                self.User(new UserViewModel(response));
-            });
-
-        }
+        this.Load();
     }
 
-    doSomething() {
-        this.message('You invoked doSomething() on the viewmodel.');
-        this.GetUser();
+    Load(){
+        httpService.Get('/users')
+            .done((response) => {
+                this.Users(ko.utils.arrayMap(response, (item) =>{
+                    return new UserViewModel(item);
+                }));
+            });
     }
 }
 
-export default { viewModel: HomeViewModel, template: template };
+export default { viewModel: ViewModel, template: template };
