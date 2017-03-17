@@ -1,6 +1,6 @@
 import ko from 'knockout';
 import template from 'text!./login.html';
-import httpService from 'http-service';
+import authService from 'auth-service';
 
 class UserViewModel {
     constructor(user){
@@ -21,12 +21,24 @@ class ViewModel {
             username: this.Username(),
             password: this.Password()
         };
-        console.log(data);
-        httpService.Post('/users/login', data)
-            .done((response) =>{
-                window.location.assign(window.location.origin);
+
+        authService.Login(data)
+            .done((response) => {
+                if(response.success){
+                    authService.StoreUserData(response.token, response.user);
+                    window.location.assign(window.location.origin);
+                }
+                else{
+                    this.Clear();                    
+                }
             });
     }
+
+    Clear(){
+        this.Username('');
+        this.Password('');
+    }
+
 }
 
 export default { viewModel: ViewModel, template: template };

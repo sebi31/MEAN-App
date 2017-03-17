@@ -33,9 +33,10 @@ class Router {
 // Create and export router instance
 var routerInstance = new Router({
     routes: [
-        { url: '',          params: { page: 'home-page' } },
-        { url: 'login',          params: { page: 'login' } },
-        { url: 'register',          params: { page: 'register' } }
+        { url: '',               params: { page: 'home-page', requiresLogin: false } },
+        { url: 'login',          params: { page: 'login', requiresLogin: false } },
+        { url: 'register',       params: { page: 'register', requiresLogin: false } },
+        { url: 'profile',        params: { page: 'profile', requiresLogin: true} }
     ]
 });
 
