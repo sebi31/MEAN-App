@@ -9,17 +9,17 @@
                         <form class="form-horizontal">
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control" placeholder="Name">
+                                    <input data-bind="value: Username" type="text" class="form-control" placeholder="Username">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control" placeholder="Username">
+                                    <input data-bind="value: Email" type="text" class="form-control" placeholder="Email">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <input type="password" class="form-control" placeholder="Password">
+                                    <input data-bind="value: Password" type="password" class="form-control" placeholder="Password">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -29,7 +29,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-success">Sign Up</button>
+                                    <button data-bind="click: Register" class="btn btn-success">Sign Up</button>
                                 </div>
                             </div>
                         </form>
