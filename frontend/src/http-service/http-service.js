@@ -25,7 +25,7 @@ class HttpService{
         var jqXHR = $.ajax({
           type: 'POST',
           url: url,
-          data: data,
+          data: JSON.stringify(data),
           contentType: 'application/json',
           dataType: 'json'
         });
@@ -38,7 +38,7 @@ class HttpService{
         var jqXHR = $.ajax({
           type: 'PUT',
           url: url,
-          data: data,
+          data: JSON.stringify(data),
           contentType: 'application/json',
           dataType: 'json'
         });
