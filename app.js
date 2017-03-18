@@ -17,6 +17,7 @@ mongoose.connection.on('error', (err) =>{
 });
 
 const app = express();
+const router = express.Router();
 
 const users = require('./routes/users');
 //Port number
@@ -39,12 +40,15 @@ app.use(passport.session());
 
 const passportConfig = require('./config/passport');
 passportConfig(passport);
-//API Routes
-app.use('/users', users);
 
-//Index route
-app.get('/', (req, res) => {
-    res.send('Invalid Endpoint');
+//API Routes
+app.use('/api', router);
+
+router.use('/users', users);
+
+//Main API route
+router.get('/', (req, res) => {
+    res.send('Main API');
 });
 
 //Start server

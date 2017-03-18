@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'http://localhost:3000/api';
 
 class HttpService{
     constructor(){
