@@ -14,6 +14,8 @@ class ViewModel {
     constructor(params) {
         this.Username = ko.observable();
         this.Password = ko.observable();
+        this.ShowAlert = ko.observable();
+        this.Message = ko.observable();
     }
 
     LogIn(){
@@ -24,12 +26,14 @@ class ViewModel {
 
         authService.Login(data)
             .done((response) => {
+                this.Message(response.message);
                 if(response.success){
                     authService.StoreUserData(response.token, response.user);
                     window.location.assign(window.location.origin);
                 }
                 else{
-                    this.Clear();                    
+                    this.Clear();
+                    this.ShowAlert(true);
                 }
             });
     }

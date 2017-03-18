@@ -11,8 +11,8 @@ var require = {
         "signals":              "bower_modules/js-signals/dist/signals.min",
         "text":                 "bower_modules/requirejs-text/text",
         "http-service":         "http-service/http-service",
-        "auth-service":         "common/auth-service"          
-
+        "auth-service":         "common/auth-service",
+        "UserViewModel":        "models/UserViewModel"
     },
     shim: {
         "bootstrap": { deps: ["jquery"] }

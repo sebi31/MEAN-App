@@ -7,6 +7,8 @@ class ViewModel {
         this.Email = ko.observable();
         this.Username = ko.observable();
         this.Password = ko.observable();
+        this.ShowAlert = ko.observable();
+        this.Message = ko.observable();
     }
 
     Register(){
@@ -15,9 +17,9 @@ class ViewModel {
             username: this.Username(),
             password: this.Password()
         };
-        
+
         httpService.Post('/users/register', data)
-            .done((response) =>{
+            .done((response) => {
                 window.location.assign(window.location.origin + '/#login');
             });
 
