@@ -1,3 +1,46 @@
-<p>
-  register works!
-</p>
+<div class="container">
+        <div class="row">
+            <div class="center-block" style="width: 360px">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Sign Up
+                    </div>
+                    <div class="panel-body">
+                        <form (submit)="onRegisterSubmit()" class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <input type="text" [(ngModel)]="Name" name="Name" class="form-control" placeholder="Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <input type="text" [(ngModel)]="Username" name="Username" class="form-control" placeholder="Username">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <input  type="text" [(ngModel)]="Email" name="Email" class="form-control" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <input type="password" [(ngModel)]="Password" name="Password" class="form-control" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <input type="password" [(ngModel)]="ConfirmedPassword" name="ConfirmedPassword" class="form-control" placeholder="Confirm Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
