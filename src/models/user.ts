@@ -27,7 +27,7 @@ export function getUserByUsername(username: string, callback: (err: any, res: IU
   const req = { username: username };
   User.findOne(req, callback);
 }
-export function addUser(user: IUser, callback: (err: any, res: IUser) => void) {
+export function createUser(user: IUser, callback: (err: any, res: IUser) => void) {
   bcrypt.genSalt(10, (err: Error, salt: string) => {
     bcrypt.hash(user.password, salt, (err: Error, hash: string) => {
       if (err) {
@@ -36,5 +36,13 @@ export function addUser(user: IUser, callback: (err: any, res: IUser) => void) {
       user.password = hash;
       user.save(callback);
     })
+  })
+}
+export function comparePassword(pasword: string, hash: string, callback: (err: Error | null, success: boolean) => void) {
+  bcrypt.compare(pasword, hash, (err: Error, success: boolean) => {
+    if (err) {
+      throw err;
+    }
+    callback(null, success);
   })
 }
