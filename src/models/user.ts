@@ -1,14 +1,4 @@
 import { Schema, Model, Document, model } from 'mongoose';
-import * as bcrypt from 'bcryptjs';
-
-const UserSchema: Schema = new Schema({
-  name: String,
-  email: String,
-  username: String,
-  Password: String
-});
-
-export const User: Model<IUser> = model('User', UserSchema);
 
 export interface IUser extends Document {
   name: string;
@@ -17,32 +7,11 @@ export interface IUser extends Document {
   password: string;
 }
 
-export function get(callback: (err: any, res: Array<IUser>) => void) {
-  User.find(callback);
-}
-export function getUserById(id: any, callback: (err: any, res: IUser | null) => void) {
-  User.findById(id, callback);
-}
-export function getUserByUsername(username: string, callback: (err: any, res: IUser | null) => void) {
-  const req = { username: username };
-  User.findOne(req, callback);
-}
-export function createUser(user: IUser, callback: (err: any, res: IUser) => void) {
-  bcrypt.genSalt(10, (err: Error, salt: string) => {
-    bcrypt.hash(user.password, salt, (err: Error, hash: string) => {
-      if (err) {
-        throw err;
-      }
-      user.password = hash;
-      user.save(callback);
-    })
-  })
-}
-export function comparePassword(pasword: string, hash: string, callback: (err: Error | null, success: boolean) => void) {
-  bcrypt.compare(pasword, hash, (err: Error, success: boolean) => {
-    if (err) {
-      throw err;
-    }
-    callback(null, success);
-  })
-}
+const UserSchema: Schema = new Schema({
+  name: String,
+  email: String,
+  username: String,
+  password: String,
+});
+
+export const User: Model<IUser> = model('User', UserSchema);

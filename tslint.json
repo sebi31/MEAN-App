@@ -1,0 +1,22 @@
+{
+  "defaultSeverity": "warning",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "rules": {
+    "quotemark": [true, "single"],
+    "indent": [true, "spaces", 2],
+    "interface-name": false,
+    "ordered-imports": false,
+    "object-literal-sort-keys": false,
+    "no-consecutive-blank-lines": false,
+    "variable-name": [true, "ban-keywords", "allow-pascal-case", "check-format", "allow-leading-underscore"],
+    "array-type": [true, "generic"],
+    "max-line-length": false,
+    "member-ordering": false,
+    "allow-empty-functions": true,
+    "no-empty": false,
+    "object-literal-shorthand": false,
+    "no-shadowed-variable": false
+  }
+}
