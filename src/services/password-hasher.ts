@@ -1,17 +1,9 @@
-import { genSalt, hash } from 'bcryptjs';
+import { genSalt, hash, genSaltSync, hashSync } from 'bcryptjs';
 
 class PasswordHasher {
   public hashPassword(password: string) {
-    let passwordHash = '';
-    genSalt(10, (err: Error, salt: string) => {
-      hash(password, salt, (err: Error, hash: string) => {
-        if (err) {
-          throw err;
-        }
-        passwordHash = hash;
-      });
-    });
-    return passwordHash;
+    const salt = genSaltSync(10);
+    return hashSync(password, salt);
   }
 }
 

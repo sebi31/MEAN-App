@@ -6,19 +6,23 @@ import passport from 'passport';
 
 export function passportConfig() {
   const options: StrategyOptions = {
-    jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('jwt'),
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: secret,
   };
 
   passport.use(new Strategy(options, (payload: any, done: VerifiedCallback) => {
-    userRetriever.getUserById(payload.sub, (err: any, user: IUser | null) => {
+    userRetriever.getUserById(payload.id, (err: any, user: IUser | null) => {
+      console.log('payload', payload)
       if (err) {
-        return done(err, null);
+        console.log('error');
+        return done(err, false);
       }
       if (user) {
+        console.log('user found');
         return done(null, user);
       } else {
-        return done(null, null);
+        console.log('user not found');
+        return done(null, false);
       }
     });
   }));

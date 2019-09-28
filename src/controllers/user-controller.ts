@@ -64,11 +64,18 @@ router.post('/login', (req: Request, res: Response, next: NextFunction) => {
         const signOptions: SignOptions = {
           expiresIn: 3600,
         };
-        const token = sign(user, secret, signOptions);
+        const payload = {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          username: user.username,
+          password: user.password,
+        }
+        const token = sign(payload, secret, signOptions);
 
         res.json({
           success: true,
-          token: 'JWT ' + token,
+          token: token,
           user: user,
         });
       } else {

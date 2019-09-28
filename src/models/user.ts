@@ -7,6 +7,7 @@ export interface IUser extends Document {
   password: string;
 }
 
+// TODO(Seb): required fields
 const UserSchema: Schema = new Schema({
   name: String,
   email: String,
