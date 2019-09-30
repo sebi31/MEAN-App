@@ -4,8 +4,7 @@
   "description": "MEAN stack app",
   "main": "dist/index.js",
   "scripts": {
-    "start": "node dist/app.js",
-    "serve": "nodemon src/app.ts",
+    "start": "nodemon src/app.ts",
     "build": "tsc -p ."
   },
   "repository": {

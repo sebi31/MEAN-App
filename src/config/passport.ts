@@ -12,16 +12,12 @@ export function passportConfig() {
 
   passport.use(new Strategy(options, (payload: any, done: VerifiedCallback) => {
     userRetriever.getUserById(payload.id, (err: any, user: IUser | null) => {
-      console.log('payload', payload)
       if (err) {
-        console.log('error');
         return done(err, false);
       }
       if (user) {
-        console.log('user found');
         return done(null, user);
       } else {
-        console.log('user not found');
         return done(null, false);
       }
     });

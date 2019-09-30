@@ -20,10 +20,7 @@ router.get('', (req: Request, res: Response, next: NextFunction) => {
 });
 
 router.get('/profile', authenticate('jwt', { session: false }), (req: Request, res: Response, next: NextFunction) => {
-  res.json({
-    success: true,
-    user: req.user,
-  });
+  res.json({ user: req.user });
 });
 
 router.post('/register', (req: Request, res: Response, next: NextFunction) => {
@@ -36,9 +33,9 @@ router.post('/register', (req: Request, res: Response, next: NextFunction) => {
 
   userCreator.createUser(user, (err: any, user: IUser) => {
     if (err) {
-      res.json({ success: 'false', message: 'Failed to register user' });
+      res.json({ user: null });
     } else {
-      res.json({ success: 'true', message: `User ${user.username} registered` });
+      res.json({ user: user });
     }
   });
 });
@@ -52,7 +49,7 @@ router.post('/login', (req: Request, res: Response, next: NextFunction) => {
       throw err;
     }
     if (!user) {
-      return res.json({ success: false, message: 'User not found' });
+      return res.json({ token: null, user: null });
     }
 
     passwordComparer.comparePassword(password, user.password, (err: Error | null, isMatch: boolean) => {
@@ -70,16 +67,15 @@ router.post('/login', (req: Request, res: Response, next: NextFunction) => {
           email: user.email,
           username: user.username,
           password: user.password,
-        }
+        };
         const token = sign(payload, secret, signOptions);
 
         res.json({
-          success: true,
           token: token,
           user: user,
         });
       } else {
-        return res.json({ success: false, message: 'Wrong password' });
+        return res.json({ token: null, user: null });
       }
     });
   });
