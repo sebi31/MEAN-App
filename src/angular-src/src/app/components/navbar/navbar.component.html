@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+  <span>MEAN App</span>
+
+  <div class="pull-right">
+    <button mat-button [matMenuTriggerFor]="menu">{{ currentUser?.username }}</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logout()">Log out</button>
+    </mat-menu>
+  </div>
+
+</mat-toolbar>
